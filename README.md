@@ -1,10 +1,9 @@
-
 Super Galactic Caculator.
 
 Project Description:
 A solar year lasts 365 days on planet Earth. However, the length of a solar year varies from planet to planet. For instance, a solar year on Mercury lasts 88 days. Write an application that determines a user's age based on a planet's solar years.
 
-We are building a Website that will allows when the information is submited it will return their age in Mercury, Venus, Mars, Jupiter. Also will calculate their age in the present, past and future.  
+We are building a Website that will allows when the information is submited it will return their age in Mercury, Venus, Mars, Jupiter. Also will calculate their age in the present, past and future.
 
 BY: Hernan Verar
 
@@ -18,19 +17,24 @@ Description;
 
 Setup/Installation Requirements Installing all packages with;
 
-$ npm install.
+$ npm install
+
 Building the project using webpack with;
 
 $ npm run build
+
 Starting a development server with;
 
 $ npm run start
+
 Linting JS files in the src folder with;
 
 $ npm run lint
+
 Running tests with Jest using;
 
 $ npm run test
+
 Known Bugs:
 
 License; MIT License

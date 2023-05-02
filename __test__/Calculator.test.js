@@ -156,16 +156,16 @@ describe("PastAge class", () => {
   describe("constructor", () => {
     it("should throw an error if the pastAge parameter is not a Date object", () => {
       expect(() => new PastAge("invalid date")).toThrow(
-        "pastAge parameter must be a Date object"
+        "Invalid pastAge input. Please enter a valid Date object."
       );
     });
+  });
 
     it("should throw an error if the pastAge parameter is not a valid date", () => {
       expect(() => new PastAge(new Date("invalid date"))).toThrow(
         "pastAge parameter must be a valid date"
       );
     });
-  });
 
   describe("getPastAge", () => {
     it("should return the correct age for Mercury", () => {

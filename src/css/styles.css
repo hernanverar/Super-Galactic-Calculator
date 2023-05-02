@@ -1,0 +1,10 @@
+body {
+  background-color: rgb(115, 138, 206);
+  width: 90%;
+  margin: 25% 25% 25% 25%;
+}
+
+.button {
+  left: 50%;
+  top: auto;
+}

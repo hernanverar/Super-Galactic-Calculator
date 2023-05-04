@@ -151,127 +151,27 @@ describe("getFutureAge", () => {
 });
 
 // Testing for past time
+describe('PastAge', () => {
 
-describe("PastAge class", () => {
-  describe("constructor", () => {
-    it("should throw an error if the pastAge parameter is not a Date object", () => {
-      expect(() => new PastAge("invalid date")).toThrow(
-        "Invalid pastAge input. Please enter a valid Date object."
-      );
-    });
+  let myAge;
+
+  beforeEach(() => {
+    myAge = new PastAge(10);
   });
 
-    it("should throw an error if the pastAge parameter is not a valid date", () => {
-      expect(() => new PastAge(new Date("invalid date"))).toThrow(
-        "pastAge parameter must be a valid date"
-      );
-    });
+test('should subtract the pastAge value from myAge.earthAge and return how many earthYears have passed since past age then store it in earthYearsSince property of myAge', () => {
+  let pastAge = 5;
+  myAge.yearsSince(myAge.earthAge, pastAge)
+  expect(myAge.earthYearsSince).toEqual(5);
+});
 
-  describe("getPastAge", () => {
-    it("should return the correct age for Mercury", () => {
-      const pastAge = new Date(1980, 0, 1);
-      const pastAgeObj = new PastAge(
-        pastAge,
-        0.2408467,
-        0.61519726,
-        1.8808158,
-        11.862615
-      );
-      expect(pastAgeObj.getPastAge("Mercury")).toBe(133.44);
-    });
-
-    it("should return the correct age for Venus", () => {
-      const pastAge = new Date(1980, 0, 1);
-      const pastAgeObj = new PastAge(
-        pastAge,
-        0.2408467,
-        0.61519726,
-        1.8808158,
-        11.862615
-      );
-      expect(pastAgeObj.getPastAge("Venus")).toBe(51.82);
-    });
-
-    it("should return the correct age for Mars", () => {
-      const pastAge = new Date(1980, 0, 1);
-      const pastAgeObj = new PastAge(
-        pastAge,
-        0.2408467,
-        0.61519726,
-        1.8808158,
-        11.862615
-      );
-      expect(pastAgeObj.getPastAge("Mars")).toBe(17.13);
-    });
-
-    it("should return the correct age for Jupiter", () => {
-      const pastAge = new Date(1980, 0, 1);
-      const pastAgeObj = new PastAge(
-        pastAge,
-        0.2408467,
-        0.61519726,
-        1.8808158,
-        11.862615
-      );
-      expect(pastAgeObj.getPastAge("Jupiter")).toBe(2.71);
-    });
-
-    it("should return the correct age for Earth", () => {
-      const pastAge = new Date(1980, 0, 1);
-      const pastAgeObj = new PastAge(
-        pastAge,
-        0.2408467,
-        0.61519726,
-        1.8808158,
-        11.862615
-      );
-      expect(pastAgeObj.getPastAge("Earth")).toBe(43);
-    });
-
-    it("should return the age in Earth years if planet parameter is not valid", () => {
-      const pastAge = new Date(1980, 0, 1);
-      const pastAgeObj = new PastAge(
-        pastAge,
-        0.2408467,
-        0.61519726,
-        1.8808158,
-        11.862615
-      );
-      expect(pastAgeObj.getPastAge("invalid planet")).toBe(43);
-    });
-  });
-
-  describe("_calculateAge", () => {
-    it("should calculate the age correctly for a given date", () => {
-      const pastDate = new Date("1990-01-01");
-      const ageCalculator = new PastAge(pastDate);
-      const age = ageCalculator._calculateAge(new Date("2023-05-01"));
-      expect(age).toEqual(33);
-    });
-
-    it("should return 0 if the date is in the future", () => {
-      const pastDate = new Date("1990-01-01");
-      const ageCalculator = new PastAge(pastDate);
-      const age = ageCalculator._calculateAge(new Date("1980-01-01"));
-      expect(age).toEqual(0);
-    });
-  });
-
-  describe("_calculatePlanetDate", () => {
-    it("should calculate the planet date correctly for a given planet", () => {
-      const pastDate = new Date("1990-01-01");
-      const ageCalculator = new PastAge(
-        pastDate,
-        0.2408467,
-        0.61519726,
-        1,
-        1.8808158,
-        11.862615
-      );
-      const planetDate = ageCalculator._calculatePlanetDate("Mars");
-      expect(planetDate.getFullYear()).toEqual(1982);
-      expect(planetDate.getMonth()).toEqual(1);
-      expect(planetDate.getDate()).toEqual(27);
-    });
+test('should correctly convert earthYearsSince property value to mercuryYearsSince, venusYearsSince, marsYearsSince, and jupiterYearsSince and store in the corresponding property of myAge obj', () => {
+  let pastAge = 5;
+  myAge.yearsSince(myAge.earthAge, pastAge)
+  expect(myAge.earthYearsSince).toEqual(5);
+  expect(myAge.mercuryYearsSince).toEqual(20.83);
+  expect(myAge.venusYearsSince).toEqual(8.06);
+  expect(myAge.marsYearsSince).toEqual(2.66);
+  expect(myAge.jupiterYearsSince).toEqual(0.42);
   });
 });

@@ -1,63 +1,18 @@
 export default class PastAge {
-  constructor(pastAge, mercuryRatio, venusRatio, marsRatio, jupiterRatio) {
-    if (!pastAge || !(pastAge instanceof Date) || isNaN(pastAge.getTime())) {
-      throw new Error(
-        "Invalid pastAge input. Please enter a valid Date object."
-      );
+  constructor(earthYearsSince, mercuryYearsSince, venusYearsSince, marsYearsSince, jupiterYearsSince) {
+    this.earthYearsSince = earthYearsSince;
+    this.mercuryYearsSince = mercuryYearsSince;
+    this.venusYearsSince = venusYearsSince;
+    this.marsYearsSince = marsYearsSince;
+    this.jupiterYearsSince = jupiterYearsSince;
     }
 
-    this.pastAge = pastAge;
-    this.mercuryRatio = mercuryRatio;
-    this.venusRatio = venusRatio;
-    this.marsRatio = marsRatio;
-    this.jupiterRatio = jupiterRatio;
-    this.planetRatio = {
-      Mercury: 0.2408467,
-      Venus: 0.61519726,
-      Earth: 1,
-      Mars: 1.8808158,
-      Jupiter: 11.862615,
-    };
-  }
-
-  getPastAge(planet) {
-    const pastAgeYears = this._calculateAge(this.pastAge);
-    switch (planet) {
-      case "Mercury":
-        return (
-          Math.round(
-            (pastAgeYears / (this.mercuryRatio * this.jupiterRatio)) * 100
-          ) / 100
-        );
-      case "Venus":
-        return (
-          Math.round(
-            (pastAgeYears / (this.venusRatio * this.jupiterRatio)) * 100
-          ) / 100
-        );
-      case "Mars":
-        return (
-          Math.round(
-            (pastAgeYears / (this.marsRatio * this.jupiterRatio)) * 100
-          ) / 100
-        );
-      case "Jupiter":
-        return Math.round((pastAgeYears / this.jupiterRatio) * 100) / 100;
-      default:
-        return pastAgeYears;
+    yearsSince(earthAge, pastAge){
+      this.earthYearsSince = Number((earthAge - pastAge).toFixed(2));
+      this.mercuryYearsSince = Number((this.earthYearsSince / 0.24).toFixed(2));
+      this.venusYearsSince = Number((this.earthYearsSince / 0.62).toFixed(2));
+      this.marsYearsSince = Number((this.earthYearsSince / 1.88).toFixed(2));
+      this.jupiterYearsSince = Number((this.earthYearsSince / 11.86).toFixed(2));
     }
   }
 
-  _calculateAge(date) {
-    const ageDiffMs = Date.now() - date.getTime();
-    const ageDate = new Date(ageDiffMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
-
-  _calculatePlanetDate(planet) {
-    const planetAgeYears = this.getPastAge(planet);
-    const planetAgeMs = planetAgeYears * 31557600000; // 1 earth year in milliseconds
-    const planetDate = new Date(Date.now() - planetAgeMs);
-    return planetDate;
-  }
-}

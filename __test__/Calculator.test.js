@@ -1,177 +1,67 @@
 import Age from "../src/CurrentYear.js";
-import FutureAge from "../src/FutureYear.js";
-import PastAge from "../src/PastYear.js";
 
-describe("Age constructor", () => {
-  it("should create an object with correct properties and values", () => {
-    const age = new Age(30, 125, 48, 16, 2);
-    expect(age).toEqual({
-      earthAge: 30,
-      mercuryAge: 125,
-      venusAge: 48,
-      marsAge: 16,
-      jupiterAge: 2,
-    });
-  });
-});
-
-describe("Age", () => {
-  test("should return the correct age on Mercury", () => {
-    const age = new Age(30, 125, 48, 16, 2);
-    expect(age.getAgeOnPlanet("Mercury")).toBe(125);
-  });
-});
-
-describe("Age", () => {
-  test("should return the correct age on Venus", () => {
-    const age = new Age(30, 125, 48, 16, 2);
-    expect(age.getAgeOnPlanet("Venus")).toBe(48);
-  });
-});
-
-describe("Age", () => {
-  test("should return the correct age on Mars", () => {
-    const age = new Age(30, 125, 48, 16, 2);
-    expect(age.getAgeOnPlanet("Mars")).toBe(16);
-  });
-});
-
-describe("Age", () => {
-  test("should return the correct age on Jupiter", () => {
-    const age = new Age(30, 125, 48, 16, 2);
-    expect(age.getAgeOnPlanet("Jupiter")).toBe(2);
-  });
-});
-
-//Here we have Future year calculations testing
-
-describe("FutureAge", () => {
-  describe("constructor", () => {
-    it("should throw an error if the earthAgetill parameter is not a valid date", () => {
-      expect(() => new FutureAge("not a date", 0.5, 0.5, 0.5, 0.5)).toThrow(
-        "Invalid date input"
-      );
-    });
-  });
-  it("should set the instance variables correctly", () => {
-    const earthAgetill = new Date("2022-01-01");
-    const mercuryRatio = 0.5;
-    const venusRatio = 0.7;
-    const marsRatio = 1.2;
-    const jupiterRatio = 3.0;
-
-    const futureAge = new FutureAge(
-      earthAgetill,
-      mercuryRatio,
-      venusRatio,
-      marsRatio,
-      jupiterRatio
-    );
-
-    expect(futureAge.earthAgetill).toEqual(earthAgetill);
-    expect(futureAge.mercuryRatio).toEqual(mercuryRatio);
-    expect(futureAge.venusRatio).toEqual(venusRatio);
-    expect(futureAge.marsRatio).toEqual(marsRatio);
-    expect(futureAge.jupiterRatio).toEqual(jupiterRatio);
-  });
-});
-
-describe("getFutureAge", () => {
-  it("should return the correct age on Mercury", () => {
-    const earthAgetill = new Date("2022-01-01");
-    const mercuryRatio = 0.5;
-    const venusRatio = 0.7;
-    const marsRatio = 1.2;
-    const jupiterRatio = 3.0;
-
-    const futureAge = new FutureAge(
-      earthAgetill,
-      mercuryRatio,
-      venusRatio,
-      marsRatio,
-      jupiterRatio
-    );
-
-    expect(futureAge.getFutureAge("Mercury")).toEqual(futureAge.mercuryAge);
-  });
-
-  it("should return the correct age on Venus", () => {
-    const earthAgetill = new Date("2022-01-01");
-    const mercuryRatio = 0.5;
-    const venusRatio = 0.7;
-    const marsRatio = 1.2;
-    const jupiterRatio = 3.0;
-
-    const futureAge = new FutureAge(
-      earthAgetill,
-      mercuryRatio,
-      venusRatio,
-      marsRatio,
-      jupiterRatio
-    );
-
-    expect(futureAge.getFutureAge("Venus")).toEqual(futureAge.venusAge);
-  });
-
-  it("should return the correct age on Mars", () => {
-    const earthAgetill = new Date("2022-01-01");
-    const mercuryRatio = 0.5;
-    const venusRatio = 0.7;
-    const marsRatio = 1.2;
-    const jupiterRatio = 3.0;
-
-    const futureAge = new FutureAge(
-      earthAgetill,
-      mercuryRatio,
-      venusRatio,
-      marsRatio,
-      jupiterRatio
-    );
-
-    expect(futureAge.getFutureAge("Mars")).toEqual(futureAge.marsAge);
-  });
-
-  it("should return the correct age on jupiter", () => {
-    const earthAgetill = new Date("2022-01-01");
-    const mercuryRatio = 0.5;
-    const venusRatio = 0.7;
-    const marsRatio = 1.2;
-    const jupiterRatio = 3.0;
-
-    const futureAge = new FutureAge(
-      earthAgetill,
-      mercuryRatio,
-      venusRatio,
-      marsRatio,
-      jupiterRatio
-    );
-
-    expect(futureAge.getFutureAge("Jupiter")).toEqual(futureAge.jupiterAge);
-  });
-});
-
-// Testing for past time
-describe('PastAge', () => {
+describe('Age', () => {
 
   let myAge;
 
   beforeEach(() => {
-    myAge = new PastAge(10);
+    myAge = new Age(10);
   });
 
-test('should subtract the pastAge value from myAge.earthAge and return how many earthYears have passed since past age then store it in earthYearsSince property of myAge', () => {
-  let pastAge = 5;
-  myAge.yearsSince(myAge.earthAge, pastAge)
-  expect(myAge.earthYearsSince).toEqual(5);
-});
+  test('should correctly create an Age class with an earthAge Property of input', () => {
+    expect(myAge.earthAge).toEqual(10);
+  });
 
-test('should correctly convert earthYearsSince property value to mercuryYearsSince, venusYearsSince, marsYearsSince, and jupiterYearsSince and store in the corresponding property of myAge obj', () => {
-  let pastAge = 5;
-  myAge.yearsSince(myAge.earthAge, pastAge)
-  expect(myAge.earthYearsSince).toEqual(5);
-  expect(myAge.mercuryYearsSince).toEqual(20.83);
-  expect(myAge.venusYearsSince).toEqual(8.06);
-  expect(myAge.marsYearsSince).toEqual(2.66);
-  expect(myAge.jupiterYearsSince).toEqual(0.42);
+  test('should take the earthAge of myAge and convert it to mercury years and add mercuryAge property to Age class', () => {
+    myAge.mercuryYears(myAge.earthAge)
+    expect(myAge.mercuryAge).toEqual(41.67);
+  });
+
+  test('should take the earthAge of myAge and convert it to venus years and update venusAge property in Age class', () => {
+    myAge.venusYears(myAge.earthAge)
+    expect(myAge.venusAge).toEqual(16.13);
+  });
+
+  test('should take the earthAge of myAge and convert it to mars years and update marsAge property in Age class', () => {
+    myAge.marsYears(myAge.earthAge)
+    expect(myAge.marsAge).toEqual(5.32);
+  });
+
+  test('should take the earthAge of myAge and convert it to jupiter years and update jupiterAge property in Age class', () => {
+    myAge.jupiterYears(myAge.earthAge)
+    expect(myAge.jupiterAge).toEqual(0.84);
+  });
+
+  test('should subtract the pastAge value from myAge.earthAge and return how many earthYears have passed since past age then store it in earthYearsSince property of myAge', () => {
+    let pastAge = 5;
+    myAge.yearsSince(myAge.earthAge, pastAge)
+    expect(myAge.earthYearsSince).toEqual(5);
+  });
+
+  test('should correctly convert earthYearsSince property value to mercuryYearsSince, venusYearsSince, marsYearsSince, and jupiterYearsSince and store in the corresponding property of myAge obj', () => {
+    let pastAge = 5;
+    myAge.yearsSince(myAge.earthAge, pastAge)
+    expect(myAge.earthYearsSince).toEqual(5);
+    expect(myAge.mercuryYearsSince).toEqual(20.83);
+    expect(myAge.venusYearsSince).toEqual(8.06);
+    expect(myAge.marsYearsSince).toEqual(2.66);
+    expect(myAge.jupiterYearsSince).toEqual(0.42);
+  });
+
+  test('should subtract myAge.earthAge from futureAge value and return how many earthYears until futureAge then store it in earthYearsTil property of myAge', () => {
+    let futureAge = 15;
+    myAge.yearsTil(myAge.earthAge, futureAge)
+    expect(myAge.earthYearsTil).toEqual(5);
+  });
+
+  test('should correctly convert earthYearsTil property value to mercuryYearsTil, venusYearsTil, marsYearsTil, and jupiterYearsTil and store in the corresponding property of myAge obj', () => {
+    let futureAge = 15;
+    myAge.yearsTil(myAge.earthAge, futureAge)
+    expect(myAge.earthYearsTil).toEqual(5);
+    expect(myAge.mercuryYearsTil).toEqual(20.83);
+    expect(myAge.venusYearsTil).toEqual(8.06);
+    expect(myAge.marsYearsTil).toEqual(2.66);
+    expect(myAge.jupiterYearsTil).toEqual(0.42);
   });
 });
+

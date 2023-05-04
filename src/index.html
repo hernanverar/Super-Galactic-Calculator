@@ -4,19 +4,42 @@
     <title>Super Galactic Age Calculator</title>
   </head>
   <body>
-    <h1>Super Galactic Age Calculator</h1>
-    <label for="earthAgeInput">Enter your Earth age:</label>
-    <input type="number" id="earthAgeInput" />
-    <button onclick="displayAgeOnPlanets()">Calculate</button>
-    <br /><br />
-    <p>Your age on different planets:</p>
-    <ul>
-      <li>Mercury: <span id="mercuryAgeOutput"></span></li>
-      <li>Venus: <span id="venusAgeOutput"></span></li>
-      <li>Mars: <span id="marsAgeOutput"></span></li>
-      <li>Jupiter: <span id="jupiterAgeOutput"></span></li>
-    </ul>
+    <form id="solarAge">
+      <label for="earthAgeInput">Enter your age on Earth:</label>
+      <input type="number" id="earthAgeInput" name="earthAgeInput" />
+      <button type="submit">Calculate</button>
+    </form>
 
-    <script src="age.js"></script>
+    <div id="results">
+      <h2>Your age on different planets:</h2>
+      <ul>
+        <li>Mercury: <span id="mercuryAge"></span></li>
+        <li>Venus: <span id="venusAge"></span></li>
+        <li>Mars: <span id="marsAge"></span></li>
+        <li>Jupiter: <span id="jupiterAge"></span></li>
+      </ul>
+
+      <h2>Years since and years until:</h2>
+      <ul>
+        <li>Years since you were 30:</li>
+        <ul>
+          <li>Earth: <span id="earthYearsSince"></span></li>
+          <li>Mercury: <span id="mercuryYearsSince"></span></li>
+          <li>Venus: <span id="venusYearsSince"></span></li>
+          <li>Mars: <span id="marsYearsSince"></span></li>
+          <li>Jupiter: <span id="jupiterYearsSince"></span></li>
+        </ul>
+        <li>Years until you turn 80:</li>
+        <ul>
+          <li>Earth: <span id="earthYearsTil"></span></li>
+          <li>Mercury: <span id="mercuryYearsTil"></span></li>
+          <li>Venus: <span id="venusYearsTil"></span></li>
+          <li>Mars: <span id="marsYearsTil"></span></li>
+          <li>Jupiter: <span id="jupiterYearsTil"></span></li>
+        </ul>
+      </ul>
+    </div>
+
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>

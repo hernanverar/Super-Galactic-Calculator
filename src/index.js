@@ -1,23 +1,32 @@
 import "./css/styles.css";
-import "./CurrentYear.js";
-import "./FutureYear.js";
-import "./PastYear.js";
+import Age from './src/Age.js';
 
-// business logic
 
-// function displayAgeOnPlanets() {
-//   const earthAgeInput = document.getElementById("earthAgeInput").value;
+function currentAgeInput(){
+  let myEarthAge = document.getElementById("earthAgeInput").value;
+  let myAge = new Age(myEarthAge);
+  showSolarAge(myAge);
+  return myAge;
+}
+// UI logic
 
-//   const mercuryAge = earthAgeInput / 0.24;
-//   const venusAge = earthAgeInput / 0.62;
-//   const marsAge = earthAgeInput / 1.88;
-//   const jupiterAge = earthAgeInput / 11.86;
-
-//   // Update the corresponding span elements with the calculated ages
-//   document.getElementById("mercuryAgeOutput").textContent =
-//     mercuryAge.toFixed(2);
-//   document.getElementById("venusAgeOutput").textContent = venusAge.toFixed(2);
-//   document.getElementById("marsAgeOutput").textContent = marsAge.toFixed(2);
-//   document.getElementById("jupiterAgeOutput").textContent =
-//     jupiterAge.toFixed(2);
-// }
+window.addEventListener("load", () => {
+  const solarAgeForm = document.getElementById("solarAge");
+  const solarAgeSinceForm = document.getElementById("solarAgeSince");
+  const solarAgeTilForm = document.getElementById("solarAgeTil");
+  let myAge;
+  let mySinceAge;
+  let myTilAge;
+  solarAgeForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    myAge = currentAgeInput();
+  });
+  solarAgeSinceForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    mySinceAge = sinceAgeSubmit();
+  });
+  solarAgeTilForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    myTilAge = tilAgeSubmit();
+  });
+});
